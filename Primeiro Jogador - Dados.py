@@ -63,3 +63,33 @@ for c in range(qplayers):
 # ranking = sorted(lista, key=itemgetter(1), reverse=True)
 # for c in range(qplayers):
 #     print(f'{ranking[c][0]} tirou {ranking[c][1]}')
+
+
+# trying to discover and resolve ties
+
+from random import randint
+from operator import itemgetter
+
+
+lista = []
+player = []
+qplayers = int(input(f'Quantidade de jogadores: '))
+for d in range(qplayers):
+    nome = str(input(f'Nome do jogador {d + 1}: '))
+    dados = randint(1, 2)
+    player.append(nome)
+    dados = str(dados)
+    player.append(dados)
+    lista.append(player[:])
+    player.clear()
+print('Bora la pro ranking')
+ranking = sorted(lista, key=itemgetter(1), reverse=True)
+des = 0
+while ranking[des][1] == ranking[des + 1][1]:
+    lista.clear()
+    lista.append(ranking[des])
+    lista.append(ranking[des + 1])
+    des = des + 1
+print(lista)
+for c in range(qplayers):
+    print(f'{ranking[c][0]} tirou {ranking[c][1]}')
